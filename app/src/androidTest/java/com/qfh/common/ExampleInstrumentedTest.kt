@@ -1,4 +1,4 @@
-package com.alert.dialog
+package com.qfh.common
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

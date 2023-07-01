@@ -1,4 +1,4 @@
-package com.alert.dialog
+package com.qfh.common
 
 import org.junit.Test
 
