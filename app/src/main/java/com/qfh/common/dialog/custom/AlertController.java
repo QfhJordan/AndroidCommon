@@ -11,7 +11,7 @@ import android.view.WindowManager;
 
 /**
  * author  : QfhJordan
- * github-link : https://github.com/QfhJordan/AndroidAlertDialog
+ * github-link : https://github.com/QfhJordan/AndroidCommon
  * date    : 2023/07/01
  * email   : 1741965145@qq.com
  * describe: 模仿Android源码中Builder中的AlertController
