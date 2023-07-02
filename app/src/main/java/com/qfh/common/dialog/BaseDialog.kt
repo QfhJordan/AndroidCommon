@@ -12,8 +12,9 @@ import com.qfh.common.R
 /**
  *  author  : QfhJordan
  *  github-link : https://github.com/QfhJordan/AndroidAlertDialog
- *  describe: Dialog基类
  *  date    : 2023/07/01
+ *  email   : 1741965145@qq.com
+ *  describe: Dialog基类
  */
 open class BaseDialog : AppCompatDialog {
     private var builder: Builder
