@@ -57,7 +57,7 @@ public class DialogViewHelper {
                 mViews.put(viewId, new WeakReference<>(view));
             }
         }
-        return (T) view;
+        return (T)view;
     }
 
     public void setOnClickListener(int viewId, View.OnClickListener listener) {
