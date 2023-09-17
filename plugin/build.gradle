@@ -1,0 +1,39 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+gradlePlugin{
+    plugins{
+        DependenciesPlugin{
+            id = 'com.yechaoa.plugin.dependencies'
+            implementationClass = 'com.yechaoa.plugin.DependenciesPlugin'
+        }
+    }
+}
+group 'com.yechaoa.plugin'
+version '1.0.0'
+
+publishing {
+    // 配置Plugin GAV
+    publications {
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = 'dependencies'
+            version = version
+            from components.java
+        }
+    }
+    // 配置仓库地址
+    repositories {
+        maven {
+            url layout.buildDirectory.dir("maven-repo")
+        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+

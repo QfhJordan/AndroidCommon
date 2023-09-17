@@ -5,6 +5,7 @@
     >
 
     <application
+        android:name=".myapp.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,25 +17,17 @@
 
         <activity android:name="com.qfh.common.activity.DebugActivity"
             android:exported="true">
+
+        </activity>
+        <activity android:name=".activity.JavaTesActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".datastorage.ShareReadActivity" />
-        <activity android:name=".datastorage.ShareWriteActivity" />
-        <activity android:name=".datastorage.LoginShareActivity" />
-        <activity android:name=".datastorage.LoginForgetActivity" />
-        <activity android:name=".datastorage.DatabaseActivity" />
-        <activity android:name=".datastorage.SQLiteWriteActivity" />
-        <activity android:name=".datastorage.SQLiteReadActivity" />
-        <!-- provider的authorities属性值需要与Java代码的AUTHORITIES保持一致 -->
-        <provider
-            android:name=".datastorage.provider.UserInfoProvider"
-            android:authorities="com.example.chapter06.provider.UserInfoProvider"
-            android:enabled="true"
-            android:exported="true" />
+
     </application>
 
 </manifest>

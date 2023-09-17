@@ -1,0 +1,28 @@
+//引用groovy插件，编译插件工程中的代码
+apply plugin: 'groovy'
+
+//声明仓库的地址
+//repositories {
+//    mavenCentral()
+//}
+//声明依赖的包
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+//调用maven插件，用于发布
+apply plugin: 'maven-publish'
+publishing {
+        repositories {
+            maven {
+                url = uri('../repo')
+            }
+        }
+        publications {
+            maven(MavenPublication) {
+                groupId = 'com.qfh.route'
+                artifactId = 'router-gradle-plugin'
+                version = '1.0.3'
+            }
+        }
+}

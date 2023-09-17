@@ -1,0 +1,8 @@
+[
+  {"url":"router://page-home","description":"Debug调试页面",
+  "realPath":"com.qfh.common.activity.JavaTesActivity"
+},
+  {"url":"router://kotlin-page-home","description":"Kotlin Debug调试页面",
+    "realPath":"com.qfh.common.activity.DebugActivity"
+  }
+]

@@ -1,17 +1,28 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    //应用我们的路由插件
+//    id 'com.yechaoa.plugin.dependencies'
+//    id 'com.qfh.router'
 }
 
+def cfg = rootProject.ext
+
+//router {
+//    wikiDir getRootDir().absolutePath
+//}
+
 android {
-    compileSdk 33
+    namespace 'com.qfh.common'
+    compileSdk cfg.android.compileSdk
 
     defaultConfig {
-        applicationId "com.qfh.common"
-        minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        applicationId cfg.applicationId.app
+        minSdk cfg.android.minSdk
+        targetSdk cfg.android.targetSdk
+        versionCode cfg.android.versionCode
+        versionName cfg.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,15 +34,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kapt {
+        arguments {
+            arg("root_project_dir",  rootProject.projectDir.absolutePath)
     }
 }
+}
+
 
 dependencies {
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -55,4 +70,8 @@ dependencies {
     // room库各版本见 https://mvnrepository.com/artifact/androidx.room/room-runtime
     implementation 'androidx.room:room-runtime:2.4.2'
     annotationProcessor 'androidx.room:room-compiler:2.4.2'
+
+    implementation project(':router-annotations')
+    kapt project(':router-processor')
 }
+apply from: project.rootProject.file("other.gradle")

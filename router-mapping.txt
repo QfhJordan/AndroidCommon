@@ -1,0 +1,6 @@
+{
+    "router://page-a":"com.qfh.common.activity.DebugActivity",
+    "router://page-b":"com.qfh.common.datastorage.ContentWriteActivity",
+    "router://page-c":"com.qfh.common.datastorage.DatabaseActivity",
+    "router://page-d":"com.qfh.common.datastorage.DatastoreReadActivity"
+}

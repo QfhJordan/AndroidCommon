@@ -1,0 +1,42 @@
+//使用maven插件中的发布功能
+//apply plugin: 'maven-publish'
+apply plugin: 'maven-publish'
+
+Properties gradleProperties = new Properties()
+gradleProperties.load(
+        project.rootProject.file('gradle.properties').newDataInputStream())
+
+def VERSION_NAME = gradleProperties.getProperty("VERSION_NAME")
+def POM_URL = gradleProperties.getProperty("POM_URL")
+def GROUP_ID = gradleProperties.getProperty("GROUP_ID")
+
+Properties projectGradleProperties = new Properties()
+projectGradleProperties.load(project.file('gradle.properties').newDataInputStream())
+
+def POM_ARTIFACT_ID = projectGradleProperties.getProperty("POM_ARTIFACT_ID")
+println("maven-publish VERSION_NAME = $VERSION_NAME")
+println("maven-publish POM_URL = $POM_URL")
+println("maven-publish GROUP_ID = $GROUP_ID")
+println("maven-publish POM_ARTIFACT_ID = $POM_ARTIFACT_ID")
+
+publishing {
+    // 配置Plugin GAV
+    publications {
+        maven(MavenPublication) {
+            groupId = GROUP_ID
+            artifactId = POM_ARTIFACT_ID
+            version = VERSION_NAME
+            from components.java
+
+        }
+    }
+    // 发布地址
+    repositories {
+//        maven {
+//            url = uri('../repo')
+//        }
+        maven {
+            url layout.buildDirectory.dir("maven-repo")
+        }
+    }
+}

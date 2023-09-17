@@ -8,14 +8,4 @@
     tools:context=".activity.DebugActivity">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="sQLiteWriteActivity"
-        android:text="插入数据" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="sQLiteReadActivity"
-        android:text="读取数据" />
 </LinearLayout>
