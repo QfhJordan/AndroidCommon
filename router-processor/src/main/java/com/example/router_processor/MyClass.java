@@ -68,7 +68,6 @@ public class MyClass extends AbstractProcessor {
         builder.append("        Map<String,String> mapping = new HashMap<>();\n\n");
 
         JsonArray jsonArray = new JsonArray();
-        
         System.out.println(TAG + ">>>>>>>process.....");
         //获取所有标记了@Destination 注解的类的信息
         Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(Destinatign.class);

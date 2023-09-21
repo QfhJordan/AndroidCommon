@@ -3,15 +3,15 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     //应用我们的路由插件
-//    id 'com.yechaoa.plugin.dependencies'
+    id 'com.qfhqfh.plugin.dependencies'
 //    id 'com.qfh.router'
 }
 
 def cfg = rootProject.ext
 
-//router {
-//    wikiDir getRootDir().absolutePath
-//}
+router {
+    wikiDir getRootDir().absolutePath
+}
 
 android {
     namespace 'com.qfh.common'
@@ -23,6 +23,7 @@ android {
         targetSdk cfg.android.targetSdk
         versionCode cfg.android.versionCode
         versionName cfg.android.versionName
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,11 +38,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    kapt {
+
+/*    kapt {
         arguments {
-            arg("root_project_dir",  rootProject.projectDir.absolutePath)
-    }
-}
+            arg("root_project_dir", rootProject.projectDir.absolutePath)
+        }
+    }*/
 }
 
 

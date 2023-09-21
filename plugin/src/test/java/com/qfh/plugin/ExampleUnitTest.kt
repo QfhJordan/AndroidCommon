@@ -1,4 +1,4 @@
-package com.yechaoa.plugin
+package com.qfh.plugin
 
 import org.junit.Test
 

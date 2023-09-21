@@ -38,6 +38,7 @@ include ':router-gradle-plugin'
 include ':router-annotations'
 include ':router-processor'
 
+
 gradle.addBuildListener(new BuildListener() {
     @Override
     void settingsEvaluated(Settings settings) {
@@ -66,3 +67,8 @@ gradle.addBuildListener(new BuildListener() {
 include ':plugin'
 include ':router-processor'
 include ':router-annotations'
+include ':lib'
+//打印本次构建执行的所有任务的名称
+gradle.taskGraph.beforeTask {
+    task-> println "qfhqfh task:${task.name}"
+}
