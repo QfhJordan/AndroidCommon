@@ -37,7 +37,7 @@ include ':router-gradle-plugin'
 //include ':plugin'
 include ':router-annotations'
 include ':router-processor'
-
+include 'mylibrary'
 
 gradle.addBuildListener(new BuildListener() {
     @Override

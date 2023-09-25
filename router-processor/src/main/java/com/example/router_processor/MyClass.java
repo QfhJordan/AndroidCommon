@@ -58,7 +58,7 @@ public class MyClass extends AbstractProcessor {
 //            throw new RuntimeException("root_project_dir = " + rootDir);
 //        }
         //将要自动生成的类的类名
-        String className = "RouterMapping" + System.currentTimeMillis();
+        String className = "RouterMapping_" + System.currentTimeMillis();
         StringBuilder builder = new StringBuilder();
         builder.append("package com.qfh.common.mapping;\n\n");
         builder.append("import java.util.HashMap;\n");

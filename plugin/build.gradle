@@ -39,6 +39,8 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
     implementation 'com.android.tools.build:gradle:7.4.2'
+    implementation "commons-io:commons-io:2.6"
+    implementation "commons-codec:commons-codec:1.11"
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_11

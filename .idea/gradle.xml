@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/modules" />
             <option value="$PROJECT_DIR$/modules/libGroovy" />
+            <option value="$PROJECT_DIR$/mylibrary" />
             <option value="$PROJECT_DIR$/plugin" />
             <option value="$PROJECT_DIR$/router-annotations" />
             <option value="$PROJECT_DIR$/router-gradle-plugin" />

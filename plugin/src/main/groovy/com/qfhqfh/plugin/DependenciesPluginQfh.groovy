@@ -1,7 +1,7 @@
 package com.qfhqfh.plugin
 
-import com.android.build.api.transform.Transform
-import com.android.build.gradle.AppExtension;
+import com.android.build.gradle.AppExtension
+import com.android.build.gradle.AppPlugin;
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import groovy.json.JsonSlurper
@@ -14,11 +14,29 @@ class DependenciesPluginQfh implements Plugin<Project> {
     @Override
     void apply(Project project) {
         //注册
+        println "------------------Transform----------------------"
+        def isApp = project.plugins.hasPlugin(AppPlugin)
+        if (isApp) {
+            println "------------------isApp----------------------"
+            def android = project.extensions.getByType(AppExtension)
+            android.registerTransform(new RouterMappingTransform(project))
+        }
+        /*
+         AppExtension android = project.extensions.getByType(AppExtension)
+         android.registerTransform(new RouterMappingTransform(project))
+ //*/
 //        if (project.plugins.hasPlugin(AppPlugin)){
 //            println "33333333333333333333333333"
-//            AppExtension appExtension = project.extensions.getByType(AppExtension)
+//            AppExtension appExtension = project.extensions.getByType(BaseExtension::class.java)
 //            Transform transform = new RouterMappingTransform()
 //            appExtension.registerTransform(transform)
+//        }
+//        def androidComponents = project.extensions.getByType(AndroidComponentsExtension::class.java)
+//        androidComponents.onVariants {
+//            variant ->
+//                variant.transformClassesWith(PrivacyClassVisitorFactory::class.java,
+//                        InstrumentationScope.ALL) {}
+//                variant.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
 //        }
 
         if (project.extensions.findByName("kapt") != null) {
@@ -34,6 +52,9 @@ class DependenciesPluginQfh implements Plugin<Project> {
                 println ">>>>>>>>>>>>>>>>  mappingFile.exists()"
                 mappingFile.deleteDir()
             }
+        }
+        if (!project.plugins.hasPlugin(AppPlugin)) {
+            return
         }
         project.getExtensions().create("router", RouterExtension)
 
