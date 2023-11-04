@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     //应用我们的路由插件
-    id 'com.qfhqfh.plugin.dependencies'
+//    id 'com.qfhqfh.plugin.dependencies'
 }
 
 android {

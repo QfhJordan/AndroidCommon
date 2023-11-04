@@ -3,14 +3,14 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     //应用我们的路由插件
-    id 'com.qfhqfh.plugin.dependencies'
+//    id 'com.qfhqfh.plugin.dependencies'
 }
 
 def cfg = rootProject.ext
 
-router {
-    wikiDir getRootDir().absolutePath
-}
+//router {
+//    wikiDir getRootDir().absolutePath
+//}
 
 android {
     namespace 'com.qfh.common'
@@ -77,6 +77,7 @@ dependencies {
 
     implementation project(':router-annotations')
     kapt project(':router-processor')
-    implementation project(':mylibrary')
+//    implementation project(':mylibrary')
+    implementation project(':android-skin-loader-lib')
 }
 apply from: project.rootProject.file("other.gradle")

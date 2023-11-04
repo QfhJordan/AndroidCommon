@@ -15,6 +15,8 @@ import org.apache.commons.io.FileUtils
 import org.gradle.api.Project
 
 import java.util.jar.JarFile
+import java.util.jar.JarOutputStream
+import java.util.zip.ZipEntry
 
 class RouterMappingTransform extends Transform {
     Project project
@@ -50,36 +52,46 @@ class RouterMappingTransform extends Transform {
         super.transform(context, inputs, referencedInputs, outputProvider, isIncremental)
 //        project.logger.warn("register RouterMappingTransform")
         RouterMappingCollector collector = new RouterMappingCollector()
-
+        // 1. 遍历所有的Input
+        // 2. 对Input进行二次处理
+        // 3. 将Input拷贝到目标目录
         inputs.each { TransformInput input ->
+            // 把 JAR 类型的输入，拷贝到目标目录
             input.jarInputs.each { JarInput jarInput ->
 //                println "jarInput.file.absolutePath:" + jarInput.file.absolutePath
                 scanJar(jarInput.file)
                 File src = jarInput.file
                 File dest = getDestFile(jarInput, outputProvider)
                 collector.collectFromJarFile(jarInput.file)
-
                 FileUtils.copyFile(src, dest)
-
-//                        FileUtils.copyFile(src, dest)
             }
             input.directoryInputs.each { DirectoryInput directoryInput ->
-//                println "qfh file.absolutePath:" + directoryInput.file.absolutePath
-//                directoryInput.file.eachDirRecurse { File file ->
-//                    if (file.isFile()) {
-////                        println "file.absolutePath:" + file.absolutePath
-//                    }
-//                }
                 File dest = outputProvider.getContentLocation(directoryInput.name,
                         directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
-//                        FileUtils
                 collector.collect(directoryInput.file)
 
                 FileUtils.copyDirectory(directoryInput.file, dest)
             }
         }
         println "${getName()} qfhall mapping class name = ${collector.mappingClassName}"
-
+        File mappingJarFile = outputProvider.getContentLocation("router_mapping",
+                getOutputTypes(), getScopes(), Format.JAR)
+        println "${getName()} qfhall mappingJarFile  = ${mappingJarFile}"
+        if (mappingJarFile.getParentFile().exists()) {
+            mappingJarFile.getParentFile().mkdirs()
+        }
+        if (mappingJarFile.exists()) {
+            mappingJarFile.delete()
+        }
+        //字节码写入本地文件
+        FileOutputStream fileOutputStream = new FileOutputStream(mappingJarFile)
+        JarOutputStream jarOutputStream = new JarOutputStream(fileOutputStream)
+        ZipEntry zipEntry = new ZipEntry(RouterMappingByteCodeBuilder.CLASS_NAME + ".class")
+        jarOutputStream.putNextEntry(zipEntry)
+        jarOutputStream.write(RouterMappingByteCodeBuilder.get(collector.mappingClassName))
+        jarOutputStream.closeEntry()
+        jarOutputStream.close()
+        fileOutputStream.close()
     }
 
     static File getDestFile(JarInput jarInput, TransformOutputProvider outputProvider) {

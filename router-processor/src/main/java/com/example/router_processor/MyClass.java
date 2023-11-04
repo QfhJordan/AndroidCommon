@@ -116,30 +116,30 @@ public class MyClass extends AbstractProcessor {
         } catch (Exception e) {
             throw new RuntimeException("Error while create " + e);
         }
-        //写入JSON到本地文件中
-        File rootFile = new File(rootDir);
-        if (!rootFile.exists()) {
-            throw new RuntimeException("root_project_dir not exist" + rootFile);
-        }
-//        创建router_mapping 子目录
-        File jsonFile = new File(rootFile, "router_mapping");
-        if (!jsonFile.exists()) {
-            jsonFile.mkdir();
-        }
-        File mappingFile = new File(jsonFile, className + "mapping_" + System.currentTimeMillis() + ".json");
-        //写入json内容
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(mappingFile));
-            String  json = jsonArray.toString();
-            writer.write(json);
-            writer.flush();
-            writer.close();
-        } catch (Throwable e) {
-            throw new RuntimeException("Error while create " + e);
-        }
-
-
-        System.out.println(",,,,,,finish");
+//        //写入JSON到本地文件中
+//        File rootFile = new File(rootDir);
+//        if (!rootFile.exists()) {
+//            throw new RuntimeException("root_project_dir not exist" + rootFile);
+//        }
+////        创建router_mapping 子目录
+//        File jsonFile = new File(rootFile, "router_mapping");
+//        if (!jsonFile.exists()) {
+//            jsonFile.mkdir();
+//        }
+//        File mappingFile = new File(jsonFile, className + "mapping_" + System.currentTimeMillis() + ".json");
+//        //写入json内容
+//        try {
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(mappingFile));
+//            String  json = jsonArray.toString();
+//            writer.write(json);
+//            writer.flush();
+//            writer.close();
+//        } catch (Throwable e) {
+//            throw new RuntimeException("Error while create " + e);
+//        }
+//
+//
+//        System.out.println(",,,,,,finish");
         return false;
     }
 
